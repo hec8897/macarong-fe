@@ -5,7 +5,7 @@ import { Flex, Icon, Toggle } from '@/components/atoms';
 interface HeaderProps {
   title: string;
 }
-const Header: React.FC<HeaderProps> = ({ title = '7월 23일 화' }) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
   const [isCanceled, setIsCanceled] = useState(false);
   const handleLeftClick = () => {
     console.log('left click');

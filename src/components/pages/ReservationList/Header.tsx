@@ -1,18 +1,37 @@
-import React from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 
-import { Flex, Icon } from '@/components/atoms';
+import { Flex, Icon, Toggle } from '@/components/atoms';
 
 interface HeaderProps {
   title: string;
-  onBack: () => void;
 }
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ title = '7월 23일 화' }) => {
+  const [isCanceled, setIsCanceled] = useState(false);
+  const handleLeftClick = () => {
+    console.log('left click');
+  };
+  const handleRightClick = () => {
+    console.log('right click');
+  };
   return (
-    <Flex>
-      <Icon variant="chevronLeft" />
-      <Icon variant="chevronRight" />
-    </Flex>
+    <header className="bg-white">
+      <Flex align="center" justify="between" gap={16} className="p-4 pb-3">
+        <button onClick={handleLeftClick}>
+          <Icon variant="chevronLeft" />
+        </button>
+        <h3 className="text-heading3">{title}</h3>
+        <button onClick={handleRightClick}>
+          <Icon variant="chevronRight" />
+        </button>
+      </Flex>
+
+      <div className="py-4 px-3">
+        <Flex align="center" justify="between" gap={16} className="px-1">
+          <div className="text-title2 text-secondary">취소된 예약 안보기</div>
+          <Toggle checked={isCanceled} onChange={() => setIsCanceled(!isCanceled)} />
+        </Flex>
+      </div>
+    </header>
   );
 };
 

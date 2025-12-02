@@ -4,8 +4,9 @@ import type { ReservationListProps } from './ReservationList.types';
 
 export const ReservationList: React.FC<ReservationListProps> = () => {
   return (
-    <div>
+    <div className="bg-background">
       <Header />
+      <div>123</div>
     </div>
   );
 };

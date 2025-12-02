@@ -4,4 +4,4 @@
  * 예: Button, Input, Label, Icon, Text 등
  */
 
-export {};
+export { Icon } from './Icon';

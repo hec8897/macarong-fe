@@ -31,6 +31,7 @@ module.exports = {
         background: '#F2F4F6',
         primary: '#1A2128',
         secondary: '#6D7882',
+        tertiary: '#8E98A0',
         accent: '#00AFFF',
       },
       fontSize: {

@@ -4,4 +4,5 @@
  * 예: Button, Input, Label, Icon, Text 등
  */
 
-export { Icon } from './Icon';
+export { default as Icon } from './Icon';
+export { default as Flex } from './Flex';

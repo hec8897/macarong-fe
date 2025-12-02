@@ -12,6 +12,8 @@ interface IconWrapProps {
   size?: number;
 }
 
-export const Icon: React.FC<IconWrapProps> = ({ variant, size = 24 }) => {
+const Icon: React.FC<IconWrapProps> = ({ variant, size = 24 }) => {
   return <Image src={ICON_MAP[variant]} alt={variant} width={size} height={size} />;
 };
+
+export default Icon;

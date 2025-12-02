@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Icon } from '@/components/atoms';
+import { Flex, Icon } from '@/components/atoms';
 
 interface HeaderProps {
   title: string;
@@ -9,10 +9,10 @@ interface HeaderProps {
 }
 const Header: React.FC = () => {
   return (
-    <div>
+    <Flex>
       <Icon variant="chevronLeft" />
       <Icon variant="chevronRight" />
-    </div>
+    </Flex>
   );
 };
 

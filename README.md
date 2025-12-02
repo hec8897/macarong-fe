@@ -1,40 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Macarong FE
 
-## Getting Started
+Next.js 기반의 프론트엔드 프로젝트입니다.
 
-First, run the development server:
+## 🚀 시작하기
+
+### 개발 서버 실행
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000)에서 결과를 확인할 수 있습니다.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 빌드
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+yarn build
+yarn start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## 🛠 기술 스택
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 16 (Pages Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 3 + SCSS
+- **Package Manager**: Yarn Berry
+- **Code Quality**: ESLint + Prettier
+- **Font**: Pretendard Variable
 
-## Learn More
+## 📁 프로젝트 구조 (아토믹 디자인 패턴)
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── components/          # 아토믹 디자인 컴포넌트
+│   ├── atoms/          # 가장 작은 단위 (Button, Input 등)
+│   ├── molecules/      # Atoms의 조합 (SearchBar, Card 등)
+│   ├── organisms/      # 복잡한 컴포넌트 (Header, Footer 등)
+│   └── templates/      # 페이지 레이아웃
+├── pages/              # Next.js 페이지
+├── hooks/              # 커스텀 훅
+├── lib/                # 유틸리티 함수
+├── types/              # TypeScript 타입 정의
+├── constants/          # 상수 정의
+└── styles/             # 전역 스타일
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 📝 스크립트
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# 개발 서버
+yarn dev
 
-## Deploy on Vercel
+# 프로덕션 빌드
+yarn build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 프로덕션 서버
+yarn start
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+# 린트 검사
+yarn lint
+
+# 린트 자동 수정
+yarn lint:fix
+
+# 코드 포맷팅
+yarn format
+```
+
+## 📚 참고 자료
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Atomic Design Pattern](https://bradfrost.com/blog/post/atomic-web-design/)

@@ -1,11 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, PlusCircle } from '@/assets';
+import { ChevronLeft, ChevronRight, PlusCircle, ArrowLeft, ClockFill } from '@/assets';
 
 export const ICON_MAP = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   plusCircle: PlusCircle,
+  arrowLeft: ArrowLeft,
+  clockFill: ClockFill,
 } as const;
 
 interface IconWrapProps {

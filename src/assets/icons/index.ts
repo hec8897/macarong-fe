@@ -8,3 +8,4 @@
 
 export { default as ChevronLeft } from './ic_chevron_left.svg';
 export { default as ChevronRight } from './ic_chevron_right.svg';
+export { default as PlusCircle } from './ic_plus_circle.svg';

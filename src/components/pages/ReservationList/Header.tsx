@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         <button onClick={handleLeftClick}>
           <Icon variant="chevronLeft" />
         </button>
-        <h3 className="text-heading3">{title}</h3>
+        <h3 className="text-heading-3-semibold">{title}</h3>
         <button onClick={handleRightClick}>
           <Icon variant="chevronRight" />
         </button>
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 
       <div className="py-4 px-3">
         <Flex align="center" justify="between" gap={16} className="px-1">
-          <div className="text-title2 text-secondary">취소된 예약 안보기</div>
+          <div className="text-title-medium-2 text-secondary">취소된 예약 안보기</div>
           <Toggle checked={isCanceled} onChange={() => setIsCanceled(!isCanceled)} />
         </Flex>
       </div>

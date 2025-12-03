@@ -7,6 +7,7 @@ import CarInfo from './CarInfo';
 import PayMentInfo from './PayMentInfo';
 
 import type { ReservationRequestProps } from './ReservationRequest.types';
+import { Button, Flex } from '@/components/atoms';
 
 export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservationId }) => {
   return (
@@ -27,7 +28,12 @@ export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservat
           <PayMentInfo />
         </div>
       </div>
-      <div className="sticky bottom-0">바텀 cta</div>
+      <div className="sticky bottom-0 border-t px-4 py-3 bg-white">
+        <Flex gap={8}>
+          <Button variant="tertiary">예약 불가</Button>
+          <Button>예약 확정</Button>
+        </Flex>
+      </div>
     </>
   );
 };

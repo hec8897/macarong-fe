@@ -7,3 +7,4 @@
 export { default as Icon } from './Icon';
 export { default as Flex } from './Flex';
 export { default as Toggle } from './Toggle';
+export { default as Button } from './Button';

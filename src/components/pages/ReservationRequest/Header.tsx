@@ -3,7 +3,7 @@ import { Flex, Icon } from '@/components/atoms';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white">
+    <header className="bg-white sticky top-0">
       <Flex className="h-16 px-1" align="center" gap={4}>
         <Flex align="center" justify="center" className="h-12 w-12">
           <Icon variant="arrowLeft" />

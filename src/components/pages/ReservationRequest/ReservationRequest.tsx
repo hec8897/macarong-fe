@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Flex } from '@/components/atoms';
-
 import Header from './Header';
 import ProductInfo from './ProductInfo';
 import CustomerInfo from './CustomerInfo';
 import CarInfo from './CarInfo';
+import PayMentInfo from './PayMentInfo';
 
 import type { ReservationRequestProps } from './ReservationRequest.types';
 
@@ -13,17 +12,20 @@ export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservat
   return (
     <>
       <Header />
-      <div className="bg-background-gray min-h-screen">
-        <Flex direction="col" gap={8}>
-          <div className="w-full">
-            <ProductInfo />
-          </div>
-          <div className="bg-white w-full p-5">
-            <CustomerInfo />
-            <div className="my-4 divider"></div>
-            <CarInfo />
-          </div>
-        </Flex>
+      <div className="min-h-screen">
+        <div className="w-full">
+          <ProductInfo />
+        </div>
+        <div className="h-2 bg-field-border_default"></div>
+        <div className="bg-white w-full p-5">
+          <CustomerInfo />
+          <div className="my-4 divider"></div>
+          <CarInfo />
+        </div>
+        <div className="h-2 bg-field-border_default"></div>
+        <div className="bg-white w-full p-5 pb-[64px]">
+          <PayMentInfo />
+        </div>
       </div>
       <div className="sticky bottom-0">바텀 cta</div>
     </>

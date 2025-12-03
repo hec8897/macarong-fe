@@ -7,3 +7,9 @@
     @apply text-primary font-sans font-medium;
   }
 }
+
+@layer components {
+  .divider {
+    @apply h-[1px] bg-primary opacity-[6%] w-full;
+  }
+}

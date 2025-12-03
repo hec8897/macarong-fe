@@ -72,6 +72,7 @@ const fontSize = {
   ...createFontVariants('heading-1', '28px', '36px', '-0.02em', allWeights),
   ...createFontVariants('heading-2', '24px', '32px', '-0.01em', allWeights),
   ...createFontVariants('heading-3', '20px', '28px', '0em', allWeights),
+  ...createFontVariants('heading-4', '18px', '26px', '0em', allWeights),
 
   // ============================================
   // Title

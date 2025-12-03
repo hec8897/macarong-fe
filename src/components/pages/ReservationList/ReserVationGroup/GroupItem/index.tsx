@@ -18,7 +18,7 @@ const GroupItem: React.FC = () => {
           </Flex>
         </Flex>
       </Flex>
-      <div className="my-[18px] h-[1px] bg-primary opacity-[6%] w-full"></div>
+      <div className="my-[18px] divider"></div>
       <div>
         <Flex justify="between" align="center" className="mb-2">
           <h3 className="text-title-1-semibold">올 뉴 쏘렌토</h3>

@@ -16,6 +16,7 @@ module.exports = {
         tertiary: '#8E98A0',
         accent: '#00AFFF',
         divider: '#E6E8EB',
+        disabled: '#CFD5D9',
         field: {
           border_default: '#F2F4F6',
         },

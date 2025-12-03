@@ -1,0 +1,41 @@
+.interaction_class {
+  @apply duration-200 ease-in-out;
+}
+
+.button {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+
+  @apply flex items-center justify-center text-title-1-medium
+  transition-all duration-200 ease-in-out;
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  // 색상 테마
+  &.__primary {
+    @apply bg-accent text-white;
+
+    &:hover:not(:disabled) {
+      @apply bg-opacity-90;
+    }
+
+    &:active:not(:disabled) {
+      @apply bg-opacity-80;
+    }
+  }
+
+  &.__tertiary {
+    @apply bg-background-gray text-[#505C66];
+
+    &:hover:not(:disabled) {
+      @apply bg-opacity-90;
+    }
+
+    &:active:not(:disabled) {
+      @apply bg-opacity-80;
+    }
+  }
+}

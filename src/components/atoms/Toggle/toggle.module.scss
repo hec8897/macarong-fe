@@ -1,0 +1,26 @@
+.interaction_class {
+  @apply duration-200 ease-in-out;
+}
+
+.toggle {
+  @apply relative inline-flex items-center rounded-full 
+  transition-colors interaction_class bg-[#E3E7EA];
+  width: 48px;
+  height: 28px;
+  padding: 2px;
+
+  &.__checked {
+    @apply bg-accent;
+  }
+
+  .__thumb {
+    @apply inline-block rounded-full bg-white shadow-lg 
+    transform transition-transform interaction_class;
+    width: 24px;
+    height: 24px;
+
+    &.checked {
+      @apply translate-x-[20px];
+    }
+  }
+}

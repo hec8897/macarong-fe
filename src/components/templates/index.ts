@@ -5,4 +5,4 @@
  * 예: MainLayout, AuthLayout, DashboardLayout 등
  */
 
-export {};
+export * from './Layout';

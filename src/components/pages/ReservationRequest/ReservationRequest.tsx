@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './Header';
 import ProductInfo from './ProductInfo';
@@ -8,10 +8,28 @@ import PayMentInfo from './PayMentInfo';
 
 import type { ReservationRequestProps } from './ReservationRequest.types';
 import { Button, Flex } from '@/components/atoms';
+import { Modal } from '@/components/molecules';
 
 export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservationId }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
+      <Modal
+        title="예약 불가"
+        subtitle="예약 불가 사유를 선택해주세요."
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        leftButton={{
+          text: '취소',
+          onClick: () => setIsModalOpen(false),
+          variant: 'tertiary',
+        }}
+        rightButton={{
+          text: '확정하기',
+          onClick: () => setIsModalOpen(false),
+        }}
+      />
+
       <Header />
       <div className="min-h-screen">
         <div className="w-full">
@@ -30,7 +48,9 @@ export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservat
       </div>
       <div className="sticky bottom-0 border-t px-4 py-3 bg-white">
         <Flex gap={8}>
-          <Button variant="tertiary">예약 불가</Button>
+          <Button variant="tertiary" onClick={() => setIsModalOpen(true)}>
+            예약 불가
+          </Button>
           <Button>예약 확정</Button>
         </Flex>
       </div>

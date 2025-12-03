@@ -4,4 +4,4 @@
  * 예: SearchBar, FormField, Card 등
  */
 
-export {};
+export { default as Modal } from './Modal';

@@ -5,3 +5,4 @@
  */
 
 export * from './ReservationList';
+export * from './ReservationRequest';

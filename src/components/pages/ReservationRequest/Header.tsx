@@ -1,11 +1,13 @@
 import React from 'react';
 import { Flex, Icon } from '@/components/atoms';
+import { useRouter } from 'next/router';
 
 const Header: React.FC = () => {
+  const { back } = useRouter();
   return (
     <header className="bg-white sticky top-0">
       <Flex className="h-16 px-1" align="center" gap={4}>
-        <Flex align="center" justify="center" className="h-12 w-12">
+        <Flex onClick={back} as="button" align="center" justify="center" className="h-12 w-12">
           <Icon variant="arrowLeft" />
         </Flex>
         <h1 className="text-title-1-medium">예약 요청 확인</h1>

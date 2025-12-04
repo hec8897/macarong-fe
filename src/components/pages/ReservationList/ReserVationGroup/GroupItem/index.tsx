@@ -1,22 +1,27 @@
 import React from 'react';
 
 import { Flex, Icon } from '@/components/atoms';
+import { Reservation } from '@/types';
 
-const GroupItem: React.FC = () => {
+interface ReservationGroupProps {
+  reservation: Reservation;
+}
+
+const GroupItem: React.FC<ReservationGroupProps> = ({ reservation: { products } }) => {
   return (
     <div className="w-full bg-white rounded-[20px] px-5 py-6">
       <Flex direction="col" gap={8}>
-        <h2 className="text-heading-3-semibold font-bold">훅스 타이탄 GT1 PRO C3</h2>
-        <Flex direction="col" gap={4}>
-          <Flex gap={6} align="center">
-            <Icon variant="plusCircle" size={16} />
-            <p className="text-title-medium-1 text-secondary">연료필터 카트리지</p>
+        <h2 className="text-heading-3-semibold font-bold">{products[0].name}</h2>
+        {products.length > 1 && (
+          <Flex direction="col" gap={4}>
+            {products.slice(1).map((product, index) => (
+              <Flex key={index} gap={6} align="center">
+                <Icon variant="plusCircle" size={16} />
+                <p className="text-title-medium-1 text-secondary">{product.name}</p>
+              </Flex>
+            ))}
           </Flex>
-          <Flex gap={6} align="center">
-            <Icon variant="plusCircle" size={16} />
-            <p className="text-title-medium-1 text-secondary">브레이크 패드</p>
-          </Flex>
-        </Flex>
+        )}
       </Flex>
       <div className="my-[18px] divider"></div>
       <div>

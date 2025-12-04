@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
     console.log('right click');
   };
   return (
-    <header className="bg-white">
+    <header className="bg-white sticky top-0 z-10">
       <Flex align="center" justify="between" gap={16} className="p-4 pb-3">
         <button onClick={handleLeftClick}>
           <Icon variant="chevronLeft" />

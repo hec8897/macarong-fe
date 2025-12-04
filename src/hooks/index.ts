@@ -4,4 +4,5 @@
  * 예: useModal, useForm, useFetch 등
  */
 
-export {};
+export * from './queries/useReservations';
+export type { GroupedReservation } from '@/lib/utils/groupReservations';

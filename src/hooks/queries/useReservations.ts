@@ -9,14 +9,19 @@ import {
   getReservationDetail,
   type GetReservationsParams,
 } from '@/lib/api/reservation';
+import { groupReservationsByTime } from '@/lib/utils/groupReservations';
 
 /**
- * 예약 리스트 조회 훅
+ * 예약 리스트 조회 훅 (원본 데이터)
  */
 export const useReservations = (params?: GetReservationsParams) => {
   return useQuery({
     queryKey: QUERY_KEYS.RESERVATIONS.LIST(params?.page, params?.date),
     queryFn: () => getReservations(params),
+    select: (data) => ({
+      ...data,
+      grouped: groupReservationsByTime(data.data), // 시간별 그룹핑
+    }),
   });
 };
 

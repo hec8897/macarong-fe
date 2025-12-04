@@ -15,7 +15,7 @@ export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservat
   return (
     <>
       <Modal
-        title="예약 불가"
+        title={'예약 불가' + reservationId}
         subtitle="예약 불가 사유를 선택해주세요."
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

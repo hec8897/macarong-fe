@@ -6,4 +6,3 @@ interface PortalProps {
 }
 
 export type { PortalProps };
-

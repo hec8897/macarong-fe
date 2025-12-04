@@ -1,0 +1,11 @@
+.tag {
+  @apply px-2 py-[1.5px] rounded-full text-title-3-medium whitespace-nowrap;
+
+  &.__accent {
+    @apply bg-background-accent_light text-accent;
+  }
+
+  &.__outline {
+    @apply border border-field-tertiary;
+  }
+}

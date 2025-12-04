@@ -1,0 +1,39 @@
+.group_item {
+  @apply w-full bg-white rounded-[20px] px-5 py-6;
+
+  .cancelled {
+    @apply text-warning bg-background-warning_light text-title-1-semibold rounded-[6px] px-4 py-1.5;
+  }
+
+  .title {
+    @apply text-heading-3-bold line-clamp-2;
+    &.__disabled {
+      @apply text-disabled;
+    }
+  }
+
+  .customer_vehicle {
+    @apply text-heading-3-bold line-clamp-1;
+    &.__disabled {
+      @apply text-disabled;
+    }
+  }
+
+  .customer_requirement {
+    @apply border p-3 rounded-[10px] w-full;
+    .head {
+      @apply w-full text-tertiary text-title-2-medium;
+    }
+    .body {
+      @apply text-title-3-medium text-secondary line-clamp-3;
+    }
+    &.__disabled {
+      .head {
+        @apply text-disabled;
+      }
+      .body {
+        @apply text-disabled;
+      }
+    }
+  }
+}

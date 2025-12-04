@@ -23,4 +23,3 @@ const Portal: React.FC<PortalProps> = ({ children, selector = 'modal-root' }) =>
 };
 
 export default Portal;
-

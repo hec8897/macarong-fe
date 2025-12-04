@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { Flex } from '@/components/atoms';
 
+import Error from './Error';
 import DateGroupHeader from './GroupHeader';
 import GroupItem from './GroupItem';
 
@@ -15,10 +16,11 @@ interface ReservationGroupProps {
   excludeCancelled: boolean;
 }
 export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, excludeCancelled }) => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useReservations({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError } = useReservations({
     date, // YYYY-MM-DD 형식
     excludeCancelled,
   });
+
   const { virtualizer, parentRef, observerTarget, containerStyle } = useInfiniteVirtualScroll({
     count: data?.grouped.length ?? 0,
     hasNextPage,
@@ -26,17 +28,6 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, exclud
     fetchNextPage,
     overscan: 5,
   });
-
-  // 날짜 변경 시 스크롤을 상단으로 이동
-  useEffect(() => {
-    // 데이터가 있을 때만 스크롤 이동
-    if (data?.grouped.length && parentRef.current) {
-      // virtualizer를 사용하여 첫 번째 아이템으로 스크롤
-      virtualizer.scrollToIndex(0, { align: 'start' });
-      // DOM 요소도 직접 스크롤 (이중 보장)
-      parentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [date, virtualizer, data?.grouped.length]);
 
   // 인피니티 스크롤: 하단 감지 요소가 완전히 보일 때만 다음 페이지 로드
   useEffect(() => {
@@ -63,8 +54,15 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, exclud
     };
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  if (isError) {
+    return <Error />;
+  }
+
   return (
-    <main ref={parentRef} className="h-full pt-6 pb-[64px] px-5 bg-background-gray overflow-auto">
+    <main
+      ref={parentRef}
+      className="h-full pt-6 pb-[64px] px-5 bg-background-gray overflow-auto min-h-screen"
+    >
       <div style={containerStyle}>
         {virtualizer.getVirtualItems().map((virtualItem) => {
           const group = data?.grouped[virtualItem.index];
@@ -84,7 +82,7 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, exclud
                 paddingBottom: `${GROUP_GAP}px`,
               }}
             >
-              <Flex direction="col" gap={12}>
+              <Flex direction="col" gap={20}>
                 <DateGroupHeader reservedAt={group.time} length={group.reservations.length} />
                 <Flex direction="col" gap={12} className="w-full">
                   {group.reservations.map((reservation) => (

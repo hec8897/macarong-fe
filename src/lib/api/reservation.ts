@@ -21,7 +21,7 @@ export interface GetReservationsParams {
 export const getReservations = async (
   params?: GetReservationsParams
 ): Promise<ReservationListResponse> => {
-  return apiClient.get<ReservationListResponse>(API_ENDPOINTS.RESERVATIONS, {
+  return await apiClient.get<ReservationListResponse>(API_ENDPOINTS.RESERVATIONS, {
     params,
   });
 };

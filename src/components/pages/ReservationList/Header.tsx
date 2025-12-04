@@ -1,28 +1,63 @@
-import React, { useState } from 'react';
+import React, { useMemo, useEffect, useState, useCallback } from 'react';
 
-import dayjs from 'dayjs';
 import { Flex, Icon, Toggle } from '@/components/atoms';
 
+import { throttle } from 'lodash';
+import classNames from 'classnames';
+import dayjs from 'dayjs';
+
 interface HeaderProps {
-  title: string;
+  date: string;
   onClickDate: (direction: 'prev' | 'next') => void;
   excludeCancelled: boolean;
   onToggleCanceled: (isCanceled: boolean) => void;
 }
+
 const Header: React.FC<HeaderProps> = ({
-  title,
+  date,
   onClickDate,
   excludeCancelled,
   onToggleCanceled,
 }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const title = useMemo(() => dayjs(date).format('M월 D일 dd'), [date]);
+
+  /**
+   * 날짜 변경 시 스크롤을 상단으로 이동
+   * @param direction - 이전 날짜 또는 다음 날짜
+   */
+  const handleOnClickDate = useCallback(
+    (direction: 'prev' | 'next') => {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      onClickDate(direction);
+    },
+    [onClickDate]
+  );
+
+  useEffect(() => {
+    const onScroll = throttle(() => {
+      const isScrolledNow = window.scrollY > 0;
+      setIsScrolled(isScrolledNow);
+    }, 500); // 3초마다 최대 1번 실행
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // 초기 상태 확인
+    onScroll();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-white sticky top-0 z-10">
+    <header className={classNames('sticky bg-white top-0 z-10', { header_scrolled: isScrolled })}>
       <Flex align="center" justify="between" gap={16} className="p-4 pb-3">
-        <button onClick={() => onClickDate('prev')}>
+        <button onClick={() => handleOnClickDate('prev')}>
           <Icon variant="chevronLeft" />
         </button>
-        <h3 className="text-heading-3-semibold">{dayjs(title).format('M월 D일 dd')}</h3>
-        <button onClick={() => onClickDate('next')}>
+        <h3 className="text-heading-3-semibold">{title}</h3>
+        <button onClick={() => handleOnClickDate('next')}>
           <Icon variant="chevronRight" />
         </button>
       </Flex>

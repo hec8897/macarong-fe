@@ -17,7 +17,7 @@ export interface GroupedReservation {
 export const groupReservationsByTime = (reservations: Reservation[]): GroupedReservation[] => {
   // 시간별로 그룹핑
   const grouped = reservations.reduce((acc, reservation) => {
-    const time = dayjs(reservation.reservedAt).format('HH:mm');
+    const time = dayjs(reservation.reservedAt).format('A H:mm');
 
     if (!acc[time]) {
       acc[time] = {

@@ -32,7 +32,23 @@ axiosInstance.interceptors.request.use(
 
 // 응답 인터셉터
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // 204 No Content 응답을 에러로 처리
+    if (response.status === 204) {
+      const error = new Error('데이터가 없습니다.');
+      // AxiosError 형태로 변환
+      return Promise.reject({
+        ...error,
+        response: {
+          ...response,
+          status: 204,
+          statusText: 'No Content',
+        },
+        isAxiosError: true,
+      });
+    }
+    return response;
+  },
   (error: AxiosError) => {
     // 에러 처리
     if (error.response) {

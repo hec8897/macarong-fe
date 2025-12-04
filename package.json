@@ -17,11 +17,13 @@
     "axios": "^1.13.2",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.19",
+    "lodash": "^4.17.21",
     "next": "16.0.6",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.21",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

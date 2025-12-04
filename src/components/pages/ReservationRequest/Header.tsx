@@ -2,7 +2,13 @@ import React from 'react';
 import { Flex, Icon } from '@/components/atoms';
 import { useRouter } from 'next/router';
 
-const Header: React.FC = () => {
+import dayjs from 'dayjs';
+
+interface HeaderProps {
+  reservedAt: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ reservedAt }) => {
   const { back } = useRouter();
   return (
     <header className="bg-white sticky top-0">
@@ -15,7 +21,9 @@ const Header: React.FC = () => {
       <div className="bg-background-accent_light">
         <Flex className="py-2.5 px-5" align="center" gap={4}>
           <Icon variant="clockFill" size={20} />
-          <b className="text-title-1-semibold text-accent">2024년 7월 23일 (화) 오전 9:00</b>
+          <b className="text-title-1-semibold text-accent">
+            {dayjs(reservedAt).format('YYYY년 M월 D일 (ddd) H:mm')}
+          </b>
         </Flex>
       </div>
     </header>

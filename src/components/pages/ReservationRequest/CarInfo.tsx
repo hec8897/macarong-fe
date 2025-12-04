@@ -1,9 +1,15 @@
 import React from 'react';
 import { Flex } from '@/components/atoms';
+import { Vehicle } from '@/types';
+import { FUEL_TYPE_LABELS } from '@/constants';
 
-const carInfo = ['기아', '쏘렌토', '휘발유'];
+interface CarInfoProps {
+  vehicle: Vehicle;
+}
 
-const CarInfo: React.FC = () => {
+const CarInfo: React.FC<CarInfoProps> = ({ vehicle }) => {
+  const { brand, model, number, fuelType } = vehicle;
+  const carInfo = [brand, model, FUEL_TYPE_LABELS[fuelType]];
   return (
     <div>
       <h3 className="text-heading-4-semibold mb-3">차량 정보</h3>
@@ -25,7 +31,7 @@ const CarInfo: React.FC = () => {
         </Flex>
         <Flex className="w-full" justify="between" align="center">
           <p className="text-title-1-medium text-tertiary">차량 번호</p>
-          <p className="text-title-1-medium text-secondary">93가1243</p>
+          <p className="text-title-1-medium text-secondary">{number}</p>
         </Flex>
       </Flex>
     </div>

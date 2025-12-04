@@ -29,6 +29,6 @@ export const getReservations = async (
 /**
  * 예약 상세 조회
  */
-export const getReservationDetail = async (serverId: number): Promise<ReservationDetail> => {
+export const getReservationDetail = async (serverId: string): Promise<ReservationDetail> => {
   return apiClient.get<ReservationDetail>(API_ENDPOINTS.RESERVATION_DETAIL(serverId));
 };

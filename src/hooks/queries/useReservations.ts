@@ -63,7 +63,7 @@ export const useReservations = (
 /**
  * 예약 상세 조회 훅
  */
-export const useReservationDetail = (serverId: number) => {
+export const useReservationDetail = (serverId: string) => {
   return useQuery({
     queryKey: QUERY_KEYS.RESERVATIONS.DETAIL(serverId),
     queryFn: () => getReservationDetail(serverId),

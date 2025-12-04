@@ -9,3 +9,4 @@ export { default as Flex } from './Flex';
 export { default as Toggle } from './Toggle';
 export { default as Button } from './Button';
 export { default as Portal } from './Portal';
+export { default as Tag } from './Tag';

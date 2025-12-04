@@ -8,17 +8,20 @@ module.exports = {
       fontFamily: typography.fontFamily,
       fontWeight: typography.fontWeight,
       fontSize: typography.fontSize,
+
       colors: {
         white: '#FFFFFF',
-        background: { gray: '#F2F4F6', accent_light: '#E0F5FF' },
+        background: { gray: '#F2F4F6', accent_light: '#E0F5FF', warning_light: '#FFECEC' },
         primary: '#1A2128',
         secondary: '#6D7882',
         tertiary: '#8E98A0',
         accent: '#00AFFF',
         divider: '#E6E8EB',
         disabled: '#CFD5D9',
+        warning: '#F84848',
         field: {
           border_default: '#F2F4F6',
+          tertiary: '#E3E7EA',
         },
       },
     },

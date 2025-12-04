@@ -13,8 +13,11 @@ export const ICON_MAP = {
 interface IconWrapProps {
   variant: keyof typeof ICON_MAP;
   size?: number;
+  className?: string;
 }
 
-export const Icon: React.FC<IconWrapProps> = ({ variant, size = 24 }) => {
-  return <Image src={ICON_MAP[variant]} alt={variant} width={size} height={size} />;
+export const Icon: React.FC<IconWrapProps> = ({ variant, size = 24, className }) => {
+  return (
+    <Image className={className} src={ICON_MAP[variant]} alt={variant} width={size} height={size} />
+  );
 };

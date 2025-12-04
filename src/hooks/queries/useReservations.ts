@@ -28,10 +28,10 @@ export const useReservations = (params?: GetReservationsParams) => {
 /**
  * 예약 상세 조회 훅
  */
-export const useReservationDetail = (id: number) => {
+export const useReservationDetail = (serverId: number) => {
   return useQuery({
-    queryKey: QUERY_KEYS.RESERVATIONS.DETAIL(id),
-    queryFn: () => getReservationDetail(id),
-    enabled: !!id, // id가 있을 때만 실행
+    queryKey: QUERY_KEYS.RESERVATIONS.DETAIL(serverId),
+    queryFn: () => getReservationDetail(serverId),
+    enabled: !!serverId, // serverId가 있을 때만 실행
   });
 };

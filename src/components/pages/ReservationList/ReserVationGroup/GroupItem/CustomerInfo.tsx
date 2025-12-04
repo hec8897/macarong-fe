@@ -1,39 +1,37 @@
 import React from 'react';
-import { Flex } from '@/components/atoms';
+import { Flex, Tag } from '@/components/atoms';
 import { useCustomer } from '@/hooks';
+import { formatPhone } from '@/lib/utils/formatPhone';
+import styles from './GroupItem.module.scss';
+import classNames from 'classnames';
 
 interface CustomerInfoProps {
-  //   customer: Customer;
   customerId: number;
+  requirements: string;
+  disabled?: boolean;
 }
 
-const CustomerInfo: React.FC<CustomerInfoProps> = ({ customerId }) => {
+const CustomerInfo: React.FC<CustomerInfoProps> = ({ customerId, requirements, disabled }) => {
   const { data: customer } = useCustomer(customerId);
   return (
-    <div>
+    <div className="w-full">
       <Flex justify="between" align="center" className="mb-2">
-        <h3 className="text-title-1-semibold">
+        <h3 className={classNames(styles.customer_vehicle, { [styles.__disabled]: disabled })}>
           {customer?.vehicle.number} {customer?.vehicle.model}
         </h3>
-        <div className="bg-background-accent_light rounded-full px-2 py-[1.5px] text-title-3-medium text-accent">
-          {customer?.visitCount}회 방문
-        </div>
-      </Flex>
-      <div className="border p-3 rounded-[10px]">
-        <Flex
-          as={'p'}
-          justify="between"
-          align="center"
-          className="text-tertiary text-title-2-medium"
+        <Tag
+          className={classNames({ 'text-disabled': disabled })}
+          variant={disabled ? 'outline' : 'accent'}
         >
+          {customer?.visitCount ? `${customer?.visitCount} 회 방문` : '신규 고객'}
+        </Tag>
+      </Flex>
+      <div className={classNames(styles.customer_requirement, { [styles.__disabled]: disabled })}>
+        <Flex as={'p'} justify="between" align="center" className={styles.head}>
           <span>{customer?.name}</span>
-          <span>{customer?.phone}</span>
+          <span>{formatPhone(customer?.phone || '')}</span>
         </Flex>
-        <div className="mt-1">
-          <span className="text-title-3-medium text-secondary">
-            예약 시간보다 20분 일찍 도착할 것 같습니다
-          </span>
-        </div>
+        {requirements && <p className={styles.body}>{requirements}</p>}
       </div>
     </div>
   );

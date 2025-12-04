@@ -4,7 +4,7 @@
 
 import { apiClient } from './client';
 import { API_ENDPOINTS } from '@/constants';
-import type { Reservation, ReservationListResponse } from '@/types';
+import type { Reservation, ReservationListResponse, ReservationDetail } from '@/types';
 
 export interface GetReservationsParams {
   /** 요청 날짜 (YYYY-MM-DD) */
@@ -29,6 +29,6 @@ export const getReservations = async (
 /**
  * 예약 상세 조회
  */
-export const getReservationDetail = async (id: number): Promise<Reservation> => {
-  return apiClient.get<Reservation>(API_ENDPOINTS.RESERVATION_DETAIL(id));
+export const getReservationDetail = async (serverId: number): Promise<ReservationDetail> => {
+  return apiClient.get<ReservationDetail>(API_ENDPOINTS.RESERVATION_DETAIL(serverId));
 };

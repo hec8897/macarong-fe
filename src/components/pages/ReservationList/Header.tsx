@@ -1,10 +1,10 @@
-import React, { useMemo, useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Flex, Icon, Toggle } from '@/components/atoms';
 
+import dayjs from 'dayjs';
 import { throttle } from 'lodash';
 import classNames from 'classnames';
-import dayjs from 'dayjs';
 
 interface HeaderProps {
   date: string;
@@ -21,19 +21,16 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const title = useMemo(() => dayjs(date).format('M월 D일 dd'), [date]);
+  const title = dayjs(date).format('M월 D일 dd');
 
   /**
    * 날짜 변경 시 스크롤을 상단으로 이동
    * @param direction - 이전 날짜 또는 다음 날짜
    */
-  const handleOnClickDate = useCallback(
-    (direction: 'prev' | 'next') => {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      onClickDate(direction);
-    },
-    [onClickDate]
-  );
+  const handleOnClickDate = (direction: 'prev' | 'next') => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    onClickDate(direction);
+  };
 
   useEffect(() => {
     const onScroll = throttle(() => {

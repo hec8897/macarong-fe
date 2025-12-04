@@ -1,4 +1,3 @@
-// src/hooks/useInfiniteVirtualScroll.tsx
 import { useEffect, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
@@ -36,6 +35,13 @@ const useInfiniteVirtualScroll = ({
     overscan,
   });
 
+  // 컨테이너 스타일 계산
+  const containerStyle: React.CSSProperties = {
+    height: `${virtualizer.getTotalSize() + (isFetchingNextPage ? 40 : 0)}px`,
+    width: '100%',
+    position: 'relative',
+  };
+
   // 인피니티 스크롤: 하단 감지 요소가 완전히 보일 때만 다음 페이지 로드
   useEffect(() => {
     const target = observerTarget.current;
@@ -60,13 +66,6 @@ const useInfiniteVirtualScroll = ({
       observer.unobserve(target);
     };
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
-  // 컨테이너 스타일 계산
-  const containerStyle: React.CSSProperties = {
-    height: `${virtualizer.getTotalSize() + (isFetchingNextPage ? 40 : 0)}px`,
-    width: '100%',
-    position: 'relative',
-  };
 
   return {
     virtualizer,

@@ -2,9 +2,7 @@
  * API 관련 상수
  */
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ||
-  'https://port-0-macarong-recruitment-api-lyyamidzf5be5120.sel4.cloudtype.app/api';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 
 export const API_ENDPOINTS = {
   // 예약 관련

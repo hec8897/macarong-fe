@@ -15,7 +15,7 @@ interface ReservationGroupProps {
   date: string;
   excludeCancelled: boolean;
 }
-export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, excludeCancelled }) => {
+const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, excludeCancelled }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError } = useReservations({
     date, // YYYY-MM-DD 형식
     excludeCancelled,
@@ -52,7 +52,7 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, exclud
     return () => {
       observer.unobserve(target);
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage, observerTarget]);
 
   if (isError) {
     return <Error />;
@@ -129,3 +129,5 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, exclud
     </main>
   );
 };
+
+export default ReservationGroup;

@@ -1,5 +1,5 @@
 /**
- * 예약 데이터 그룹핑 유틸리티
+ * 예약 관련 유틸리티 함수
  */
 
 import type { Reservation } from '@/types';
@@ -42,4 +42,11 @@ export const groupReservationsByTime = (reservations: Reservation[]): GroupedRes
       reservations,
     }))
     .sort((a, b) => dayjs(a.reservedAt).valueOf() - dayjs(b.reservedAt).valueOf());
+};
+
+/**
+ * 취소된 예약을 필터링하는 함수
+ */
+export const filterCancelledReservations = (reservations: Reservation[]): Reservation[] => {
+  return reservations.filter((reservation) => reservation.status !== 'CANCELLED');
 };

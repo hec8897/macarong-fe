@@ -1,9 +1,11 @@
 import React from 'react';
 import { Flex, Tag } from '@/components/atoms';
+
+import classNames from 'classnames';
 import { useCustomer } from '@/hooks';
 import { formatPhone } from '@/lib/utils/formatPhone';
+
 import styles from './GroupItem.module.scss';
-import classNames from 'classnames';
 
 interface CustomerInfoProps {
   customerId: number;
@@ -14,8 +16,8 @@ interface CustomerInfoProps {
 const CustomerInfo: React.FC<CustomerInfoProps> = ({ customerId, requirements, disabled }) => {
   const { data: customer } = useCustomer(customerId);
   return (
-    <div className="w-full">
-      <Flex justify="between" align="center" className="mb-2">
+    <Flex direction="col" gap={8} className="w-full">
+      <Flex justify="between" align="center" className="mb-2 w-full">
         <h3 className={classNames(styles.customer_vehicle, { [styles.__disabled]: disabled })}>
           {customer?.vehicle.number} {customer?.vehicle.model}
         </h3>
@@ -33,7 +35,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ customerId, requirements, d
         </Flex>
         {requirements && <p className={styles.body}>{requirements}</p>}
       </div>
-    </div>
+    </Flex>
   );
 };
 

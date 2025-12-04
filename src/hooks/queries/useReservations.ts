@@ -9,15 +9,7 @@ import {
   getReservationDetail,
   type GetReservationsParams,
 } from '@/lib/api/reservation';
-import { groupReservationsByTime } from '@/lib/utils/groupReservations';
-import type { Reservation } from '@/types';
-
-/**
- * 취소된 예약을 필터링하는 함수
- */
-export const filterCancelledReservations = (reservations: Reservation[]): Reservation[] => {
-  return reservations.filter((reservation) => reservation.status !== 'CANCELLED');
-};
+import { groupReservationsByTime, filterCancelledReservations } from '@/lib/utils/reservationUtils';
 
 /**
  * 예약 리스트 조회 훅 (인피니티 스크롤 지원)
@@ -36,7 +28,7 @@ export const useReservations = (
     queryKey: QUERY_KEYS.RESERVATIONS.LIST(undefined, date),
     queryFn: ({ pageParam = 1 }) =>
       getReservations({
-        ...params,
+        date,
         page: pageParam,
         per_page: perPage,
       }),

@@ -7,4 +7,4 @@
 export * from './queries/useReservations';
 export * from './queries/useCustomer';
 export { default as useInfiniteVirtualScroll } from './useInfiniteVirtualScroll';
-export type { GroupedReservation } from '@/lib/utils/groupReservations';
+export type { GroupedReservation } from '@/lib/utils/reservationUtils';

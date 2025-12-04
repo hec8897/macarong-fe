@@ -18,8 +18,9 @@
       @apply text-disabled;
     }
   }
+
   .customer_requirement {
-    @apply border p-3 rounded-[10px];
+    @apply border p-3 rounded-[10px] w-full;
     .head {
       @apply w-full text-tertiary text-title-2-medium;
     }

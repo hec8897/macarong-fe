@@ -22,6 +22,7 @@ const GroupItem: React.FC<ReservationGroupProps> = ({
   return (
     <Flex direction="col" gap={18} className={styles.group_item}>
       {cancelled && <div className={styles.cancelled}>취소된 예약</div>}
+
       {products.length > 0 && (
         <>
           <Flex direction="col" gap={8} className="w-full">
@@ -41,6 +42,7 @@ const GroupItem: React.FC<ReservationGroupProps> = ({
           <div className="w-full divider"></div>
         </>
       )}
+
       <CustomerInfo customerId={customerId} requirements={requirements} disabled={cancelled} />
     </Flex>
   );

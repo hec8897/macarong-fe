@@ -7,4 +7,5 @@
 export * from './queryClient';
 export * from './api/client';
 export * from './api/reservation';
+export * from './api/customer';
 export * from './utils/groupReservations';

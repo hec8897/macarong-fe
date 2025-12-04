@@ -5,4 +5,5 @@
  */
 
 export * from './queries/useReservations';
+export * from './queries/useCustomer';
 export type { GroupedReservation } from '@/lib/utils/groupReservations';

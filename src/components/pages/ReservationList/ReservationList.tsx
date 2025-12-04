@@ -30,7 +30,11 @@ export const ReservationList: React.FC<ReservationListProps> = () => {
               <DateGroupHeader reservedAt={time} length={reservations.length} />
               <Flex direction="col" gap={12} className="w-full">
                 {reservations.map((reservation) => (
-                  <GroupItem key={reservation.serverId} reservation={reservation} />
+                  <GroupItem
+                    key={reservation.serverId}
+                    reservation={reservation}
+                    customerId={reservation.customerId}
+                  />
                 ))}
               </Flex>
             </React.Fragment>

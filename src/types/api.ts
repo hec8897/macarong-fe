@@ -40,3 +40,27 @@ export interface ReservationListResponse {
   hasPrevious: boolean;
   hasNext: boolean;
 }
+
+/**
+ * 고객 관련 타입
+ */
+
+// 연료 타입
+export type FuelType = 'PREMIUM_GASOLINE' | 'GASOLINE' | 'DIESEL' | 'LPG' | 'ELECTRIC' | 'HYBRID';
+
+// 차량 정보
+export interface Vehicle {
+  brand: string;
+  model: string;
+  number: string;
+  fuelType: FuelType;
+}
+
+// 고객 정보
+export interface Customer {
+  serverId: number;
+  name: string;
+  phone: string;
+  vehicle: Vehicle;
+  visitCount: number;
+}

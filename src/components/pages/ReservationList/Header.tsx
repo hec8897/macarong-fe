@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
 
+import dayjs from 'dayjs';
 import { Flex, Icon, Toggle } from '@/components/atoms';
 
 interface HeaderProps {
   title: string;
+  onClickDate: (direction: 'prev' | 'next') => void;
 }
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, onClickDate }) => {
   const [isCanceled, setIsCanceled] = useState(false);
-  const handleLeftClick = () => {
-    console.log('left click');
-  };
-  const handleRightClick = () => {
-    console.log('right click');
-  };
   return (
     <header className="bg-white sticky top-0 z-10">
       <Flex align="center" justify="between" gap={16} className="p-4 pb-3">
-        <button onClick={handleLeftClick}>
+        <button onClick={() => onClickDate('prev')}>
           <Icon variant="chevronLeft" />
         </button>
-        <h3 className="text-heading-3-semibold">{title}</h3>
-        <button onClick={handleRightClick}>
+        <h3 className="text-heading-3-semibold">{dayjs(title).format('M월 D일 dd')}</h3>
+        <button onClick={() => onClickDate('next')}>
           <Icon variant="chevronRight" />
         </button>
       </Flex>

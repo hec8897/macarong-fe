@@ -21,7 +21,7 @@ export const QUERY_KEYS = {
   // 예약 관련 쿼리 키
   RESERVATIONS: {
     ALL: ['reservations'] as const,
-    LIST: (page?: number, date?: string) => ['reservations', 'list', { page, date }] as const,
+    LIST: (page?: number, date?: string) => ['reservations', 'list', page, date] as const,
     DETAIL: (id: number) => ['reservations', 'detail', id] as const,
   },
 

@@ -22,21 +22,25 @@ const GroupItem: React.FC<ReservationGroupProps> = ({
   return (
     <Flex direction="col" gap={18} className={styles.group_item}>
       {cancelled && <div className={styles.cancelled}>취소된 예약</div>}
-      <Flex direction="col" gap={8} className="w-full">
-        <h2 className={classNames(styles.title, { [styles.__disabled]: cancelled })}>
-          {products[0].name}
-        </h2>
-        {products.length > 1 && (
-          <Flex direction="col" gap={4}>
-            {products.slice(1).map((product, index) => (
-              <IconLabel key={index} variant="plusCircle" disabled={cancelled}>
-                {product.name}
-              </IconLabel>
-            ))}
+      {products.length > 0 && (
+        <>
+          <Flex direction="col" gap={8} className="w-full">
+            <h2 className={classNames(styles.title, { [styles.__disabled]: cancelled })}>
+              {products[0].name}
+            </h2>
+            {products.length > 1 && (
+              <Flex direction="col" gap={4}>
+                {products.slice(1).map((product, index) => (
+                  <IconLabel key={index} variant="plusCircle" disabled={cancelled}>
+                    {product.name}
+                  </IconLabel>
+                ))}
+              </Flex>
+            )}
           </Flex>
-        )}
-      </Flex>
-      <div className="w-full divider"></div>
+          <div className="w-full divider"></div>
+        </>
+      )}
       <CustomerInfo customerId={customerId} requirements={requirements} disabled={cancelled} />
     </Flex>
   );

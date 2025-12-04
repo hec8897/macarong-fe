@@ -4,7 +4,7 @@
 
 import { apiClient } from './client';
 import { API_ENDPOINTS } from '@/constants';
-import type { Reservation, ReservationListResponse, ReservationDetail } from '@/types';
+import type { ReservationListResponse, ReservationDetail } from '@/types';
 
 export interface GetReservationsParams {
   /** 요청 날짜 (YYYY-MM-DD) */

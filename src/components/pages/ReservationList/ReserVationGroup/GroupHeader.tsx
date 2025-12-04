@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Flex } from '@/components/atoms';
-import dayjs from 'dayjs';
 
 interface DateGroupHeaderProps {
   reservedAt: string;

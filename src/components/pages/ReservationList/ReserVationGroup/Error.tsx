@@ -6,4 +6,6 @@ const Error: React.FC = memo(() => (
   </div>
 ));
 
+Error.displayName = 'Error';
+
 export default Error;

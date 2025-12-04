@@ -12,4 +12,3 @@ import type { Customer } from '@/types';
 export const getCustomerDetail = async (id: number): Promise<Customer> => {
   return apiClient.get<Customer>(API_ENDPOINTS.CUSTOMER_DETAIL(id));
 };
-

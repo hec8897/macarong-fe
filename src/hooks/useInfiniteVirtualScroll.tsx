@@ -1,6 +1,6 @@
 // src/hooks/useInfiniteVirtualScroll.tsx
 import { useEffect, useRef } from 'react';
-import { useVirtualizer, type Virtualizer } from '@tanstack/react-virtual';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 interface UseInfiniteVirtualScrollParams {
   /** 아이템 개수 */

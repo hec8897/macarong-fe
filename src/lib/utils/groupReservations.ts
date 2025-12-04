@@ -16,20 +16,23 @@ export interface GroupedReservation {
  */
 export const groupReservationsByTime = (reservations: Reservation[]): GroupedReservation[] => {
   // 시간별로 그룹핑
-  const grouped = reservations.reduce((acc, reservation) => {
-    const time = dayjs(reservation.reservedAt).format('A H:mm');
+  const grouped = reservations.reduce(
+    (acc, reservation) => {
+      const time = dayjs(reservation.reservedAt).format('A H:mm');
 
-    if (!acc[time]) {
-      acc[time] = {
-        reservedAt: reservation.reservedAt,
-        reservations: [],
-      };
-    }
+      if (!acc[time]) {
+        acc[time] = {
+          reservedAt: reservation.reservedAt,
+          reservations: [],
+        };
+      }
 
-    acc[time].reservations.push(reservation);
+      acc[time].reservations.push(reservation);
 
-    return acc;
-  }, {} as Record<string, { reservedAt: string; reservations: Reservation[] }>);
+      return acc;
+    },
+    {} as Record<string, { reservedAt: string; reservations: Reservation[] }>
+  );
 
   // 객체를 배열로 변환하고 시간순 정렬
   return Object.entries(grouped)

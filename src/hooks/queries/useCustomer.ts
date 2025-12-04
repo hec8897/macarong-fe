@@ -16,4 +16,3 @@ export const useCustomer = (id: number) => {
     enabled: !!id, // id가 있을 때만 실행
   });
 };
-

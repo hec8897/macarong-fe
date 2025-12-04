@@ -10,13 +10,27 @@ import {
   type GetReservationsParams,
 } from '@/lib/api/reservation';
 import { groupReservationsByTime } from '@/lib/utils/groupReservations';
+import type { Reservation } from '@/types';
+
+/**
+ * 취소된 예약을 필터링하는 함수
+ */
+export const filterCancelledReservations = (reservations: Reservation[]): Reservation[] => {
+  return reservations.filter((reservation) => reservation.status !== 'CANCELLED');
+};
 
 /**
  * 예약 리스트 조회 훅 (인피니티 스크롤 지원)
  */
-export const useReservations = (params?: Omit<GetReservationsParams, 'page'>) => {
+export const useReservations = (
+  params?: Omit<GetReservationsParams, 'page'> & {
+    /** 취소된 예약 필터링 여부 (기본값: false) */
+    excludeCancelled?: boolean;
+  }
+) => {
   const date = params?.date ?? '';
   const perPage = params?.per_page ?? 20;
+  const excludeCancelled = params?.excludeCancelled ?? false;
 
   return useInfiniteQuery({
     queryKey: QUERY_KEYS.RESERVATIONS.LIST(undefined, date),
@@ -36,7 +50,12 @@ export const useReservations = (params?: Omit<GetReservationsParams, 'page'>) =>
     initialPageParam: 1,
     select: (data) => {
       // 모든 페이지의 데이터를 평탄화
-      const allReservations = data.pages.flatMap((page) => page.data);
+      let allReservations = data.pages.flatMap((page) => page.data);
+
+      // 취소된 예약 필터링
+      if (excludeCancelled) {
+        allReservations = filterCancelledReservations(allReservations);
+      }
 
       return {
         data: allReservations,

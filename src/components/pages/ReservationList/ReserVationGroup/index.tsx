@@ -12,10 +12,12 @@ const GROUP_GAP = 20;
 
 interface ReservationGroupProps {
   date: string;
+  excludeCancelled: boolean;
 }
-export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date }) => {
+export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date, excludeCancelled }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useReservations({
     date, // YYYY-MM-DD 형식
+    excludeCancelled,
   });
   const { virtualizer, parentRef, observerTarget, containerStyle } = useInfiniteVirtualScroll({
     count: data?.grouped.length ?? 0,
@@ -62,7 +64,7 @@ export const ReservationGroup: React.FC<ReservationGroupProps> = ({ date }) => {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
-    <main ref={parentRef} className="h-full py-6 px-5 bg-background-gray overflow-auto">
+    <main ref={parentRef} className="h-full pt-6 pb-[64px] px-5 bg-background-gray overflow-auto">
       <div style={containerStyle}>
         {virtualizer.getVirtualItems().map((virtualItem) => {
           const group = data?.grouped[virtualItem.index];

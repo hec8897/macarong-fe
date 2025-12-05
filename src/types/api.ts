@@ -9,10 +9,10 @@ export interface ApiResponse<T> {
  */
 
 // 예약 상태
-export type ReservationStatus = 'CREATED' | 'DEFERRED' | 'CANCELLED';
+export type ReservationStatus = 'CREATED' | 'DEFERRED' | 'CANCELLED' | 'CONFIRMED' | 'COMPLETED';
 
 // 결제 수단
-export type PaymentMethod = 'CARD' | 'VBANK' | 'CASH' | 'TRANSFER';
+export type PaymentMethod = 'CARD' | 'VBANK' | 'BANK' | 'ONSITE';
 
 // 제품 정보
 export interface Product {
@@ -46,7 +46,7 @@ export interface ReservationListResponse {
  */
 
 // 연료 타입
-export type FuelType = 'PREMIUM_GASOLINE' | 'GASOLINE' | 'DIESEL' | 'LPG' | 'ELECTRIC' | 'HYBRID';
+export type FuelType = 'PREMIUM_GASOLINE' | 'GASOLINE' | 'DIESEL' | 'LPG' | 'ELECTRICITY';
 
 // 차량 정보
 export interface Vehicle {

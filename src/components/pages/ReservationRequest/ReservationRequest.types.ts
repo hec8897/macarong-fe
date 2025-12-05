@@ -1,7 +1,7 @@
 import { Reservation } from '@/types';
 
 export interface ReservationRequestProps {
-  reservationId?: string;
+  reservationId: string;
 }
 
 export interface ReservationDetailProps {

@@ -1,58 +1,45 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
+
+import { useReservationDetail } from '@/hooks';
 
 import Header from './Header';
 import ProductInfo from './ProductInfo';
 import CustomerInfo from './CustomerInfo';
 import CarInfo from './CarInfo';
 import PayMentInfo from './PayMentInfo';
+import RejectButton from './Cta';
 
 import type { ReservationRequestProps } from './ReservationRequest.types';
-import { Button, Flex } from '@/components/atoms';
-import { Modal } from '@/components/molecules';
 
 export const ReservationRequest: React.FC<ReservationRequestProps> = ({ reservationId }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data } = useReservationDetail(reservationId);
+
+  const totalPrice = useMemo(
+    () => data?.products.reduce((acc, product) => acc + product.price * product.quantity, 0),
+    [data?.products]
+  );
+  if (!data) return null;
+
   return (
     <>
-      <Modal
-        title={'예약 불가' + reservationId}
-        subtitle="예약 불가 사유를 선택해주세요."
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        leftButton={{
-          text: '취소',
-          onClick: () => setIsModalOpen(false),
-          variant: 'tertiary',
-        }}
-        rightButton={{
-          text: '확정하기',
-          onClick: () => setIsModalOpen(false),
-        }}
-      />
-
-      <Header />
-      <div className="min-h-screen">
-        <div className="w-full">
-          <ProductInfo />
-        </div>
+      <Header reservedAt={data?.reservedAt || ''} />
+      <div className="min-h-screen pb-[64px]">
+        <section>
+          <ProductInfo products={data?.products || []} requirements={data?.requirements || ''} />
+        </section>
         <div className="h-2 bg-field-border_default"></div>
-        <div className="bg-white w-full p-5">
-          <CustomerInfo />
+        <section className="p-5">
+          <CustomerInfo name={data?.customer?.name || ''} phone={data?.customer?.phone || ''} />
           <div className="my-4 divider"></div>
-          <CarInfo />
-        </div>
+          <CarInfo vehicle={data?.vehicle || {}} />
+        </section>
         <div className="h-2 bg-field-border_default"></div>
-        <div className="bg-white w-full p-5 pb-[64px]">
-          <PayMentInfo />
-        </div>
+        <section className="p-5 pb-0">
+          <PayMentInfo totalPrice={totalPrice || 0} paymentMethod={data?.paymentMethod || ''} />
+        </section>
       </div>
       <div className="sticky bottom-0 border-t px-4 py-3 bg-white">
-        <Flex gap={8}>
-          <Button variant="tertiary" onClick={() => setIsModalOpen(true)}>
-            예약 불가
-          </Button>
-          <Button>예약 확정</Button>
-        </Flex>
+        <RejectButton />
       </div>
     </>
   );

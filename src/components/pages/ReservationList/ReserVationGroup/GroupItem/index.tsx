@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import type { Reservation } from '@/types';
 
 import styles from './GroupItem.module.scss';
+import Link from 'next/link';
 
 interface ReservationGroupProps {
   reservation: Reservation;
@@ -20,31 +21,33 @@ const GroupItem: React.FC<ReservationGroupProps> = ({
 }) => {
   const cancelled = status === 'CANCELLED';
   return (
-    <Flex direction="col" gap={18} className={styles.group_item}>
-      {cancelled && <div className={styles.cancelled}>취소된 예약</div>}
+    <Link href={`/reservation/${customerId}`} className="w-full">
+      <Flex direction="col" gap={18} className={styles.group_item}>
+        {cancelled && <div className={styles.cancelled}>취소된 예약</div>}
 
-      {products.length > 0 && (
-        <>
-          <Flex direction="col" gap={8} className="w-full">
-            <h2 className={classNames(styles.title, { [styles.__disabled]: cancelled })}>
-              {products[0].name}
-            </h2>
-            {products.length > 1 && (
-              <Flex direction="col" gap={4}>
-                {products.slice(1).map((product, index) => (
-                  <IconLabel key={index} variant="plusCircle" disabled={cancelled}>
-                    {product.name}
-                  </IconLabel>
-                ))}
-              </Flex>
-            )}
-          </Flex>
-          <div className="w-full divider"></div>
-        </>
-      )}
+        {products.length > 0 && (
+          <>
+            <Flex direction="col" gap={8} className="w-full">
+              <h2 className={classNames(styles.title, { [styles.__disabled]: cancelled })}>
+                {products[0].name}
+              </h2>
+              {products.length > 1 && (
+                <Flex direction="col" gap={4}>
+                  {products.slice(1).map((product, index) => (
+                    <IconLabel key={index} variant="plusCircle" disabled={cancelled}>
+                      {product.name}
+                    </IconLabel>
+                  ))}
+                </Flex>
+              )}
+            </Flex>
+            <div className="w-full divider"></div>
+          </>
+        )}
 
-      <CustomerInfo customerId={customerId} requirements={requirements} disabled={cancelled} />
-    </Flex>
+        <CustomerInfo customerId={customerId} requirements={requirements} disabled={cancelled} />
+      </Flex>
+    </Link>
   );
 };
 

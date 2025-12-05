@@ -7,7 +7,7 @@ export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 export const API_ENDPOINTS = {
   // 예약 관련
   RESERVATIONS: '/reservations',
-  RESERVATION_DETAIL: (id: number) => `/reservations/${id}`,
+  RESERVATION_DETAIL: (id: string) => `/reservations/${id}`,
 
   // 고객 관련
   CUSTOMER_DETAIL: (id: number) => `/customers/${id}`,
@@ -20,7 +20,7 @@ export const QUERY_KEYS = {
   RESERVATIONS: {
     ALL: ['reservations'] as const,
     LIST: (page?: number, date?: string) => ['reservations', 'list', page, date] as const,
-    DETAIL: (id: number) => ['reservations', 'detail', id] as const,
+    DETAIL: (id: string) => ['reservations', 'detail', id] as const,
   },
 
   // 고객 관련 쿼리 키

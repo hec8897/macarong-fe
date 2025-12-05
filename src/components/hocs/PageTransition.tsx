@@ -70,37 +70,37 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const direction = usePageTransitionDirection();
 
   return (
-    <div
-      style={{
-        width: '100%',
-        minHeight: '100vh',
-        overflow: 'hidden',
-        position: 'relative',
-        willChange: 'transform',
-        transform: 'translateZ(0)',
-      }}
-    >
-      <AnimatePresence mode="wait" initial={false} custom={direction}>
-        <motion.div
-          key={router.asPath}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            duration: 0.3,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-          style={{
-            width: '100%',
-            willChange: 'transform',
-          }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </div>
+    // <div
+    //   style={{
+    //     width: '100%',
+    //     minHeight: '100vh',
+    //     overflow: 'hidden',
+    //     position: 'relative',
+    //     willChange: 'transform',
+    //     transform: 'translateZ(0)',
+    //   }}
+    // >
+    <AnimatePresence mode="wait" initial={false} custom={direction}>
+      <motion.div
+        key={router.asPath}
+        custom={direction}
+        variants={slideVariants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          duration: 0.3,
+          ease: [0.4, 0, 0.2, 1],
+        }}
+        style={{
+          width: '100%',
+          willChange: 'transform',
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+    // </div>
   );
 };
 
